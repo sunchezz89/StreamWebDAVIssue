@@ -10,7 +10,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 public class WebdavConnector {
-    private static WebdavConnector instance;
 
     private Sardine client;
 
@@ -33,7 +32,6 @@ public class WebdavConnector {
         client = SardineFactory.begin();
         client.setCredentials(user, pw);
         client.enablePreemptiveAuthentication(rawDomain);
-        instance = this;
     }
 
     public boolean addFolder(String path) {
