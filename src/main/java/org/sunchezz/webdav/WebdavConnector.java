@@ -13,12 +13,15 @@ public class WebdavConnector {
     private static WebdavConnector instance;
 
     private Sardine client;
+
+    //http://files.schlitt.info/work/ez/public_webdav.html#using-the-webdav-test-server
     private static String rawDomain = "webdav.schlitt.info";
     private static String URL = rawDomain;
     private static String webDavURL = "http://" + URL;
     private static String pw = "";
     private static String user = "";
 
+    //https://www.dlp-test.com/WebDAV-Intro/
 //    private static String rawDomain = "www.dlp-test.com";
 //    private static String URL = rawDomain + "/webdav";
 //    private static String webDavURL = "https://" + URL;
@@ -38,8 +41,8 @@ public class WebdavConnector {
             path = webDavURL + path;
             if (!client.exists(path)) {
                 client.createDirectory(path);
-            }
-            return client.exists(path);
+                return client.exists(path);
+            } else return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,6 +73,6 @@ public class WebdavConnector {
         System.out.println(connector.client.list(webDavURL + "/"));
         connector.addFolder("/dir");
 
-        System.out.println(connector.uploadFile("/dir/", templateFile));
+        System.out.println("Success: " + connector.uploadFile("/dir/", templateFile));
     }
 }
